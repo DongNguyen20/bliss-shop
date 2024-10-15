@@ -112,141 +112,26 @@
                 Give All You Need
             </h2>
             <div class="categories">
-                <div class="category">
+                <div th:each="category : ${categories}" class="category">
                     <img alt="Category Image" height="200"
-                         th:src="@{/img/category/computer.gif}"
+                         th:src="${category.imageUrl}"
                          width="200"/>
-                    <h3>
-                        Category 1
-                    </h3>
-                    <p>
-                        Description
-                    </p>
-                </div>
-                <div class="category">
-                    <img alt="Category Image" height="200"
-                         th:src="@{/img/category/pizza.gif}"
-                         width="200"/>
-                    <h3>
-                        Category 2
-                    </h3>
-                    <p>
-                        Description
-                    </p>
-                </div>
-                <div class="category">
-                    <img alt="Category Image" height="200"
-                         th:src="@{/img/category/go.gif}"
-                         width="200"/>
-                    <h3>
-                        Category 3
-                    </h3>
-                    <p>
-                        Description
-                    </p>
-                </div>
-                <div class="category">
-                    <img alt="Category Image" height="200"
-                         th:src="@{/img/category/machine.gif}"
-                         width="200"/>
-                    <h3>
-                        Category 4
-                    </h3>
-                    <p>
-                        Description
-                    </p>
+                    <h3 th:text="${category.name}"></h3>
+                    <p th:text="${category.description}"></p>
                 </div>
             </div>
             <h2>
                 Products
             </h2>
             <div class="products">
-                <div class="product">
-                    <img alt="Product Image" height="200"
-                         th:src="@{/img/items/item.jpg}"
-                         width="200"/>
-                    <h3>
-                        Product 1
-                    </h3>
-                    <p>
-                        Description
-                    </p>
-                    <div class="price">
-                        $20.00
-                    </div>
+                <div th:each="product : ${products}" class="product">
+                    <img alt="Product Image" height="200" th:src="${product.imageUrl}" width="200"/>
+                    <h3 th:text="${product.name}"></h3>
+                    <p th:text="${product.description}"></p>
+                    <div class="price" th:text="${product.price}"></div>
                     <div class="actions">
-                        <button>
-                            Add to Cart
-                        </button>
-                        <button>
-                            Buy Now
-                        </button>
-                    </div>
-                </div>
-                <div class="product">
-                    <img alt="Product Image" height="200"
-                         th:src="@{/img/test.gif}"
-                         width="200"/>
-                    <h3>
-                        Product 2
-                    </h3>
-                    <p>
-                        Description
-                    </p>
-                    <div class="price">
-                        $30.00
-                    </div>
-                    <div class="actions">
-                        <button>
-                            Add to Cart
-                        </button>
-                        <button>
-                            Buy Now
-                        </button>
-                    </div>
-                </div>
-                <div class="product">
-                    <img alt="Product Image" height="200"
-                         th:src="@{/img/items/item1.jpg}"
-                         width="200"/>
-                    <h3>
-                        Product 3
-                    </h3>
-                    <p>
-                        Description
-                    </p>
-                    <div class="price">
-                        $40.00
-                    </div>
-                    <div class="actions">
-                        <button>
-                            Add to Cart
-                        </button>
-                        <button>
-                            Buy Now
-                        </button>
-                    </div>
-                </div>
-                <div class="product">
-                    <img alt="Product Image" height="200"
-                         th:src="@{/img/items/item2.jpg}"
-                         width="200"/>
-                    <h3>
-                        Product 4
-                    </h3>
-                    <p>
-                        Description
-                    </p>
-                    <div class="price">
-                        $50.00
-                    </div>
-                    <div class="actions">
-                        <button>
-                            Add to Cart
-                        </button>
-                        <button>
-                            Buy Now
-                        </button>
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
                     </div>
                 </div>
             </div>
