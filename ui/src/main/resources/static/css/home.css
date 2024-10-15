@@ -132,13 +132,23 @@ body {
     font-weight: 700;
     color: #333;
 }
+
+
+.add-to-cart{
+    background-color: green;
+}
+
+.buy-now{
+    background-color: #9e0202;
+}
+
 .product .actions, .recommendation .actions {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
 .product .actions button, .recommendation .actions button {
-    background-color: #000;
+    /*background-color: #000;*/
     color: #fff;
     border: none;
     padding: 5px 10px;

@@ -15,31 +15,22 @@
          th:src="@{/img/logo.png}"
          width="50"/>
     <div class="nav-links">
-        <a href="#">
-            Home
-        </a>
-        <a href="#">
-            Shop
-        </a>
-        <a href="#">
-            Contact
-        </a>
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">Contact</a>
     </div>
     <div class="search-bar">
         <input placeholder="Search..." type="text"/>
         <button>
-            <i class="fas fa-search">
-            </i>
+            <i class="fas fa-search"></i>
         </button>
     </div>
     <div class="icons">
         <a href="#">
-            <i class="fas fa-bell">
-            </i>
+            <i class="fas fa-bell"></i>
         </a>
         <a href="#">
-            <i class="fas fa-shopping-cart">
-            </i>
+            <i class="fas fa-shopping-cart"></i>
         </a>
 
         <div th:if="${not loggedIn}">
@@ -49,8 +40,12 @@
         </div>
 
         <div th:if="${loggedIn}">
-            <div class="user-avatar">
-                <img th:src="@{/img/user.avif}" alt="User Avatar" />
+            <div class="user-avatar" onclick="toggleDropdown(event)">
+                <img th:src="@{/img/user.avif}" alt="User Avatar"/>
+                <div class="dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Logout</a>
+                </div>
             </div>
         </div>
     </div>
@@ -130,8 +125,8 @@
                     <p th:text="${product.description}"></p>
                     <div class="price" th:text="${product.price}"></div>
                     <div class="actions">
-                        <button>Add to Cart</button>
-                        <button>Buy Now</button>
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="buy-now">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -253,32 +248,22 @@
 </div>
 <div class="footer">
     <div class="links">
-        <a href="#">
-            About
-        </a>
-        <a href="#">
-            Support
-        </a>
-        <a href="#">
-            Contact
-        </a>
+        <a href="#">About</a>
+        <a href="#">Support</a>
+        <a href="#">Contact</a>
     </div>
     <div class="social-icons">
         <a href="#">
-            <i class="fab fa-facebook-f">
-            </i>
+            <i class="fab fa-facebook-f"></i>
         </a>
         <a href="#">
-            <i class="fab fa-twitter">
-            </i>
+            <i class="fab fa-twitter"></i>
         </a>
         <a href="#">
-            <i class="fab fa-instagram">
-            </i>
+            <i class="fab fa-instagram"></i>
         </a>
         <a href="#">
-            <i class="fab fa-linkedin-in">
-            </i>
+            <i class="fab fa-linkedin-in"></i>
         </a>
     </div>
     <p>
