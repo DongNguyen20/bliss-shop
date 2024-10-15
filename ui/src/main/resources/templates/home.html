@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+    <link rel="icon" type="image/png" th:href="@{/img/logo.png}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+
+</head>
+<body>
+<div class="header">
+    <img alt="Logo" height="50"
+         th:src="@{/img/logo.png}"
+         width="50"/>
+    <div class="nav-links">
+        <a href="#">
+            Home
+        </a>
+        <a href="#">
+            Shop
+        </a>
+        <a href="#">
+            Contact
+        </a>
+    </div>
+    <div class="search-bar">
+        <input placeholder="Search..." type="text"/>
+        <button>
+            <i class="fas fa-search">
+            </i>
+        </button>
+    </div>
+    <div class="icons">
+        <a href="#">
+            <i class="fas fa-bell">
+            </i>
+        </a>
+        <a href="#">
+            <i class="fas fa-shopping-cart">
+            </i>
+        </a>
+
+        <div th:if="${not loggedIn}">
+            <div class="signin">
+                <a href="/login">login</a>
+            </div>
+        </div>
+
+        <div th:if="${loggedIn}">
+            <div class="user-avatar">
+                <img th:src="@{/img/user.avif}" alt="User Avatar" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="banner">
+    <img alt="Banner Image" height="400"
+         th:src="@{/img/bn.jpg}"
+         width="1200"/>
+    <div class="text">
+        Bliss Shop
+    </div>
+</div>
+<div class="content">
+    <div class="main-content">
+        <div class="sidebar">
+            <h3>
+                Category
+            </h3>
+            <ul>
+                <li>
+                    <a href="#">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Headphone
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Laptop
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Monitor
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Phone
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Printer
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Speaker
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-section">
+            <h2>
+                Give All You Need
+            </h2>
+            <div class="categories">
+                <div class="category">
+                    <img alt="Category Image" height="200"
+                         th:src="@{/img/category/computer.gif}"
+                         width="200"/>
+                    <h3>
+                        Category 1
+                    </h3>
+                    <p>
+                        Description
+                    </p>
+                </div>
+                <div class="category">
+                    <img alt="Category Image" height="200"
+                         th:src="@{/img/category/pizza.gif}"
+                         width="200"/>
+                    <h3>
+                        Category 2
+                    </h3>
+                    <p>
+                        Description
+                    </p>
+                </div>
+                <div class="category">
+                    <img alt="Category Image" height="200"
+                         th:src="@{/img/category/go.gif}"
+                         width="200"/>
+                    <h3>
+                        Category 3
+                    </h3>
+                    <p>
+                        Description
+                    </p>
+                </div>
+                <div class="category">
+                    <img alt="Category Image" height="200"
+                         th:src="@{/img/category/machine.gif}"
+                         width="200"/>
+                    <h3>
+                        Category 4
+                    </h3>
+                    <p>
+                        Description
+                    </p>
+                </div>
+            </div>
+            <h2>
+                Products
+            </h2>
+            <div class="products">
+                <div class="product">
+                    <img alt="Product Image" height="200"
+                         th:src="@{/img/items/item.jpg}"
+                         width="200"/>
+                    <h3>
+                        Product 1
+                    </h3>
+                    <p>
+                        Description
+                    </p>
+                    <div class="price">
+                        $20.00
+                    </div>
+                    <div class="actions">
+                        <button>
+                            Add to Cart
+                        </button>
+                        <button>
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img alt="Product Image" height="200"
+                         th:src="@{/img/test.gif}"
+                         width="200"/>
+                    <h3>
+                        Product 2
+                    </h3>
+                    <p>
+                        Description
+                    </p>
+                    <div class="price">
+                        $30.00
+                    </div>
+                    <div class="actions">
+                        <button>
+                            Add to Cart
+                        </button>
+                        <button>
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img alt="Product Image" height="200"
+                         th:src="@{/img/items/item1.jpg}"
+                         width="200"/>
+                    <h3>
+                        Product 3
+                    </h3>
+                    <p>
+                        Description
+                    </p>
+                    <div class="price">
+                        $40.00
+                    </div>
+                    <div class="actions">
+                        <button>
+                            Add to Cart
+                        </button>
+                        <button>
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img alt="Product Image" height="200"
+                         th:src="@{/img/items/item2.jpg}"
+                         width="200"/>
+                    <h3>
+                        Product 4
+                    </h3>
+                    <p>
+                        Description
+                    </p>
+                    <div class="price">
+                        $50.00
+                    </div>
+                    <div class="actions">
+                        <button>
+                            Add to Cart
+                        </button>
+                        <button>
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination">
+                <a class="active" href="#">
+                    1
+                </a>
+                <a href="#">
+                    2
+                </a>
+                <a href="#">
+                    3
+                </a>
+                <a href="#">
+                    4
+                </a>
+                <a href="#">
+                    5
+                </a>
+                <a href="#">
+                    Next &raquo;
+                </a>
+            </div>
+            <h2>
+                Explore our recommendations
+            </h2>
+            <div class="recommendations">
+                <div class="recommendation">
+                    <img alt="Recommendation Image" height="200"
+                         src=""
+                         width="200"/>
+                    <h3>
+                        Recommendation 1
+                    </h3>
+                    <p>
+                        Description
+                    </p>
+                    <div class="price">
+                        $60.00
+                    </div>
+                    <div class="actions">
+                        <button>
+                            Add to Cart
+                        </button>
+                        <button>
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+                <div class="recommendation">
+                    <img alt="Recommendation Image" height="200"
+                         src=""
+                         width="200"/>
+                    <h3>
+                        Recommendation 2
+                    </h3>
+                    <p>
+                        Description
+                    </p>
+                    <div class="price">
+                        $70.00
+                    </div>
+                    <div class="actions">
+                        <button>
+                            Add to Cart
+                        </button>
+                        <button>
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+                <div class="recommendation">
+                    <img alt="Recommendation Image" height="200"
+                         src=""
+                         width="200"/>
+                    <h3>
+                        Recommendation 3
+                    </h3>
+                    <p>
+                        Description
+                    </p>
+                    <div class="price">
+                        $80.00
+                    </div>
+                    <div class="actions">
+                        <button>
+                            Add to Cart
+                        </button>
+                        <button>
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+                <div class="recommendation">
+                    <img alt="Recommendation Image" height="200"
+                         src=""
+                         width="200"/>
+                    <h3>
+                        Recommendation 4
+                    </h3>
+                    <p>
+                        Description
+                    </p>
+                    <div class="price">
+                        $90.00
+                    </div>
+                    <div class="actions">
+                        <button>
+                            Add to Cart
+                        </button>
+                        <button>
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="links">
+        <a href="#">
+            About
+        </a>
+        <a href="#">
+            Support
+        </a>
+        <a href="#">
+            Contact
+        </a>
+    </div>
+    <div class="social-icons">
+        <a href="#">
+            <i class="fab fa-facebook-f">
+            </i>
+        </a>
+        <a href="#">
+            <i class="fab fa-twitter">
+            </i>
+        </a>
+        <a href="#">
+            <i class="fab fa-instagram">
+            </i>
+        </a>
+        <a href="#">
+            <i class="fab fa-linkedin-in">
+            </i>
+        </a>
+    </div>
+    <p>
+        Copyright © 2024 Bliss Shop 🛒. All Rights Reserved.
+    </p>
+</div>
+</body>
+</html>
