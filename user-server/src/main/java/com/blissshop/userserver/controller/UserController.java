@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.blissshop.userserver.common.Endpoint.ID;
+import static com.blissshop.userserver.common.Endpoint.USER_BASE;
+
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping(USER_BASE)
 public class UserController {
 
     @Autowired
@@ -30,7 +33,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(ID)
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
