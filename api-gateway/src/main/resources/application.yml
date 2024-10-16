@@ -11,6 +11,12 @@ spring:
           uri: lb://user-service
           predicates:
             - Path=/api/users/**
+
+        - id: ui
+          uri: lb://ui
+          predicates:
+            - Path=/**
+
     discovery:
       locator:
         enabled: true

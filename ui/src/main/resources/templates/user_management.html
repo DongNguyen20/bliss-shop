@@ -252,7 +252,7 @@
             font-weight: 50px;
             color: #0c08ff;
         }
-    
+
         .form-group input {
             width: 100%;
             padding: 8px;
@@ -322,9 +322,9 @@
     </h1>
     <ul>
         <li>
-            <a href="#">
-                <i class="fas fa-tachometer-alt"></i>
-                Dashboard
+            <a href="/">
+                <i class="fas fa-home"></i>
+                Home
             </a>
         </li>
         <li>
@@ -420,50 +420,46 @@
         </div>
         <table>
             <thead>
-            <tr>
-                <th><input type="checkbox"/></th>
-                <th> User name</th>
-                <th> Email</th>
-                <th> Last active</th>
-                <th> Date added</th>
-                <th> Status</th>
-                <th> Actions</th>
-            </tr>
+                <tr>
+                    <th><input type="checkbox"/></th>
+                    <th> User name</th>
+                    <th> Email</th>
+                    <th> Last active</th>
+                    <th> Date added</th>
+                    <th> Status</th>
+                    <th> Actions</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td><input type="checkbox"/></td>
-                <td>
-                    <img alt="User photo" height="30"
-                         src="https://storage.googleapis.com/a1aa/image/DbS96yuYtG74DhPom7L81FwOTexdOj4NGiLMsUX7Jok56izJA.jpg"
-                         width="30"/>
-                    Kopw
-                </td>
-                <td> kopw@gmail.com</td>
-                <td> Mar 4, 2024</td>
-                <td> July 4, 2022</td>
-                <td>
-                    <span class="status export">
-                        Data Export
+                <tr th:each="user : ${users}">
+                    <td><input type="checkbox"/></td>
+                    <td>
+                        <img alt="User photo" height="30"
+                             src="https://storage.googleapis.com/a1aa/image/DbS96yuYtG74DhPom7L81FwOTexdOj4NGiLMsUX7Jok56izJA.jpg" width="30"/>
+                        <span th:text="${user.username}">User Name</span>
+                    </td>
+                    <td th:text="${user.email}">user@example.com</td>
+                    <td >Last Active</td>
+                    <td >Date Added</td>
+                    <td>
+                    <span class="status export" >
+                        Status
                     </span>
-                </td>
-                <td>
-                    <div class="action-buttons">
-                        <button class="view">
-                            <i class="fas fa-eye" style="color: #28a745;">
-                            </i>
-                        </button>
-                        <button class="edit">
-                            <i class="fas fa-edit" style="color: #007bff;">
-                            </i>
-                        </button>
-                        <button class="delete">
-                            <i class="fas fa-trash" style="color: #dc3545;">
-                            </i>
-                        </button>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="view">
+                                <i class="fas fa-eye" style="color: #28a745;"></i>
+                            </button>
+                            <button class="edit">
+                                <i class="fas fa-edit" style="color: #007bff;"></i>
+                            </button>
+                            <button class="delete">
+                                <i class="fas fa-trash" style="color: #dc3545;"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <div class="pagination">
