@@ -5,6 +5,8 @@ import com.blissshop.ui.model.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,26 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String goLoginPage() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam String username, @RequestParam String password, Model model) {
+        if (authenticateUser(username, password)) {
+            return "redirect:/";
+        } else {
+            model.addAttribute("message", "Invalid username or password");
+            return "login";
+        }
+    }
+
+    private boolean authenticateUser(String username, String password) {
+        return "admin".equals(username) && "12345".equals(password);
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
         return "login";
     }
 }

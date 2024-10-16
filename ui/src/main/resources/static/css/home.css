@@ -61,12 +61,27 @@ body {
     height: 40px;
     border-radius: 50%;
     overflow: hidden;
+    position: relative;
+    display: inline-block;
 }
-.header .user-avatar img {
+
+.avatar-dropdown {
+    background-image: url('/img/user.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 5px;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    border: none;
+    cursor: pointer;
+    appearance: none;
+    border-radius: 20px;
 }
+
+.avatar-dropdown option {
+    background-color: white;
+}
+
 .banner {
     position: relative;
     text-align: center;

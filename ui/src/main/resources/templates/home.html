@@ -40,12 +40,13 @@
         </div>
 
         <div th:if="${loggedIn}">
-            <div class="user-avatar" onclick="toggleDropdown(event)">
-                <img th:src="@{/img/user.avif}" alt="User Avatar"/>
-                <div class="dropdown-content">
-                    <a href="#">Profile</a>
-                    <a href="#">Logout</a>
-                </div>
+            <div class="user-avatar">
+                <select class="avatar-dropdown" id="avatar-dropdown" onchange="handleUserDropdown(event)"><!-- Hidden by default -->
+                    <option value=""></option>
+                    <option value="manage">Manage Users</option>
+                    <option value="profile">Profile</option>
+                    <option value="logout">Logout</option>
+                </select>
             </div>
         </div>
     </div>
@@ -271,4 +272,7 @@
     </p>
 </div>
 </body>
+
+<script th:src="@{/js/home.js}" ></script>
+
 </html>

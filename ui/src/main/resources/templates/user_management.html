@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>User Management</title>
+    <link rel="icon" type="image/png" th:href="@{/img/logo.png}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+          rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #ffffff;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            border-right: 1px solid #e0e0e0;
+            padding: 20px;
+        }
+
+        .sidebar h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar ul li a i {
+            margin-right: 10px;
+        }
+
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .header .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .user-info img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .header .user-info span {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .user-management {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-management h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .user-management table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .user-management table th,
+        .user-management table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .user-management table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .user-management table td img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .user-management table td .status {
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .user-management table td .status.export {
+            background-color: #e0f7fa;
+            color: #00796b;
+        }
+
+        .user-management table td .status.import {
+            background-color: #e8f5e9;
+            color: #388e3c;
+        }
+
+        .user-management .pagination {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .user-management .pagination button {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 5px 10px;
+            margin-left: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .user-management .pagination button.active {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-buttons button {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .action-buttons button.edit {
+            color: #007bff;
+        }
+
+        .action-buttons button.delete {
+            color: #dc3545;
+        }
+
+        .action-buttons button.view {
+            color: #28a745;
+        }
+
+        .add-user-button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        /* Nội dung bên trong modal */
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Profile photo layout */
+        .profile-photo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+        }
+
+        .profile-photo img {
+            border-radius: 50%;
+            margin-right: 10px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            padding: 10px 10px;
+
+        }
+
+        .form-group label {
+            display: block;
+            margin: 5px;
+            font-weight: 50px;
+            color: #0c08ff;
+        }
+    
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Footer buttons layout */
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        .form-footer .danger {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-footer button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-footer .primary {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .form-footer .danger:hover {
+            background-color: #d22;
+        }
+
+        .form-footer button:hover {
+            opacity: 0.8;
+        }
+
+        .profile-photo button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .profile-photo button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+<div class="sidebar">
+    <h1>
+        Task bar
+    </h1>
+    <ul>
+        <li>
+            <a href="#">
+                <i class="fas fa-tachometer-alt"></i>
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-paint-brush"></i>
+                Appearance
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-database"></i>
+                Database
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-link"></i>
+                Connections
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-clock"></i>
+                Timezones
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-bell"></i>
+                Notifications
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-users"></i>
+                User management
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-shield-alt"></i>
+                Security &amp; access
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-lock"></i>
+                Authentication
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-credit-card"></i>
+                Payments
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-upload"></i>
+                Import data
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-download"></i>
+                Export data
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="content">
+    <div class="header">
+        <h2 style="padding-left: 20px;">
+            User management
+        </h2>
+        <div class="user-info">
+            <img alt="User profile photo" height="40"
+                 src="https://storage.googleapis.com/a1aa/image/OpFjx5Fv776zPF8IGLbxXh1neG1DUiyhVuqfXg6GQTv01FnTA.jpg"
+                 width="40"/>
+            <span>
+
+                </span>
+        </div>
+    </div>
+    <div class="user-management">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3>
+                All users 44
+            </h3>
+            <button class="add-user-button" onclick="openModal()">
+                <i class="fas fa-plus"></i>Add user
+            </button>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th><input type="checkbox"/></th>
+                <th> User name</th>
+                <th> Email</th>
+                <th> Last active</th>
+                <th> Date added</th>
+                <th> Status</th>
+                <th> Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="checkbox"/></td>
+                <td>
+                    <img alt="User photo" height="30"
+                         src="https://storage.googleapis.com/a1aa/image/DbS96yuYtG74DhPom7L81FwOTexdOj4NGiLMsUX7Jok56izJA.jpg"
+                         width="30"/>
+                    Kopw
+                </td>
+                <td> kopw@gmail.com</td>
+                <td> Mar 4, 2024</td>
+                <td> July 4, 2022</td>
+                <td>
+                    <span class="status export">
+                        Data Export
+                    </span>
+                </td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="view">
+                            <i class="fas fa-eye" style="color: #28a745;">
+                            </i>
+                        </button>
+                        <button class="edit">
+                            <i class="fas fa-edit" style="color: #007bff;">
+                            </i>
+                        </button>
+                        <button class="delete">
+                            <i class="fas fa-trash" style="color: #dc3545;">
+                            </i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button>
+                1
+            </button>
+            <button class="active">
+                2
+            </button>
+            <button>
+                3
+            </button>
+            <button>
+                Next
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="addUserModal">
+    <h4>Account</h4>
+    <form class="modal-content">
+        <h4 style="height: 30px; margin: 0;">Account</h4>
+        <div class="profile-photo" style="display: inline-block; justify-content: space-between;">
+            <img alt="Profile photo" style="padding-left: 10px;"
+                 src="https://storage.googleapis.com/a1aa/image/LDzX5pTvl6orBdkBSlCjrbyRBLHwdhfZpZC4ZiQyMKX76izJA.jpg"/>
+            <button >✏️ Edit</button>
+        </div>
+        <div class="input-data">
+            <div class="form-group">
+                <div class="fullname" style="display: flex;display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <div style="width: 48%;">
+                        <label>FirstName</label>
+                        <input width="100%" type="text" value="Dong"/>
+                    </div>
+                    <div style="width: 48%;">
+                        <label>LastName</label>
+                        <input width="100%" type="text" value="Nguyen"/>
+                    </div>
+                </div>
+                <label>Email</label>
+                <input type="email" value="kopw@gmail.com"/>
+                <label>Username</label>
+                <input readonly="" style="margin-right: 10px;" type="text" value="kopw"/>
+                <label>Password</label>
+                <input readonly="" style="margin-right: 10px;" type="text" placeholder="password length > 8"/>
+            </div>
+
+            <div class="form-footer">
+                <button class="danger">Delete</button>
+                <div>
+                    <button onclick="closeModal()">Cancel</button>
+                    <button class="primary" onclick="closeModal()">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+
+<script th:src="@{/js/user_management.js}"></script>
+
+</html>
