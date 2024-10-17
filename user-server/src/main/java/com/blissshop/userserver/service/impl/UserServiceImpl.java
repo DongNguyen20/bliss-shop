@@ -5,6 +5,7 @@ import com.blissshop.userserver.model.entity.UserEntity;
 import com.blissshop.userserver.repository.UserRepository;
 import com.blissshop.userserver.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,13 +14,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl  implements UserService {
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public UserDto createUser(UserDto user) {
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
         UserEntity newEntity = UserEntity.builder()
                 .username(user.getUsername())
-                .password(user.getPassword())
+                .password(encodedPassword)
                 .email(user.getEmail())
+                .role(user.getRole())
                 .build();
         return UserDto.toDto(userRepository.save(newEntity));
     }
