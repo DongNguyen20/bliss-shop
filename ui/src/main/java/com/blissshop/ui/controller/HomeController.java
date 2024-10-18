@@ -16,7 +16,7 @@ import java.util.List;
 public class HomeController {
 
     @Value("${server.servlet.context-path}")
-    private static String staticResourcePath;
+    private String staticResourcePath;
 
     @GetMapping("/")
     public String home(Model model) {
@@ -64,7 +64,7 @@ public class HomeController {
         return "admin".equals(username) && "12345".equals(password);
     }
 
-    public static String setValidPathResource(String filePath) {
+    public String setValidPathResource(String filePath) {
         return staticResourcePath + filePath;
     }
 
