@@ -66,7 +66,6 @@ body {
 }
 
 .avatar-dropdown {
-    background-image: url('/img/user.avif');
     background-size: cover;
     background-repeat: no-repeat;
     padding: 5px;

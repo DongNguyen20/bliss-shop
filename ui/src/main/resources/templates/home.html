@@ -35,13 +35,14 @@
 
         <div th:if="${not loggedIn}">
             <div class="signin">
-                <a href="/login">login</a>
+                <a href="/ui/login">login</a>
             </div>
         </div>
 
         <div th:if="${loggedIn}">
-            <div class="user-avatar">
-                <select class="avatar-dropdown" id="avatar-dropdown" onchange="handleUserDropdown(event)"><!-- Hidden by default -->
+            <div class="user-avatar" >
+                <!-- using css background -->
+                <select class="avatar-dropdown" id="avatar-dropdown" onchange="handleUserDropdown(event)" th:style="'background-image: url(' + ${avatarImage} + ');'">
                     <option value=""></option>
                     <option value="manage">Manage Users</option>
                     <option value="profile">Profile</option>
@@ -156,8 +157,9 @@
             </h2>
             <div class="recommendations">
                 <div class="recommendation">
+                    <!-- using variablePath-->
                     <img alt="Recommendation Image" height="200"
-                         src=""
+                         th:src="${variablePath}"
                          width="200"/>
                     <h3>
                         Recommendation 1
@@ -179,7 +181,7 @@
                 </div>
                 <div class="recommendation">
                     <img alt="Recommendation Image" height="200"
-                         src=""
+                         th:src="@{/external/test.jpg}"
                          width="200"/>
                     <h3>
                         Recommendation 2
@@ -200,8 +202,9 @@
                     </div>
                 </div>
                 <div class="recommendation">
+                    <!-- load from public -->
                     <img alt="Recommendation Image" height="200"
-                         src=""
+                         th:src="@{/boad.gif}"
                          width="200"/>
                     <h3>
                         Recommendation 3
@@ -222,8 +225,9 @@
                     </div>
                 </div>
                 <div class="recommendation">
+                    <!-- load from external -->
                     <img alt="Recommendation Image" height="200"
-                         src=""
+                         th:src="@{/external/{path}(path=${externalImage})}"
                          width="200"/>
                     <h3>
                         Recommendation 4

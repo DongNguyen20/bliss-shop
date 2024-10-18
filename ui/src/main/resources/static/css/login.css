@@ -29,14 +29,14 @@ body {
 
 .right {
     width: 50%;
-    background: url("/img/shopping.gif") no-repeat center center;
+    background: url("/ui/img/shopping.gif") no-repeat center center;
     background-size: cover;
 }
 
 .logo {
     width: 100px;
     height: 100px;
-    background: url('/img/vantieu.jpg') no-repeat center center;
+    background: url('/ui/img/vantieu.jpg') no-repeat center center;
     background-size: cover;
     border-radius: 50%;
     margin-bottom: 20px;
